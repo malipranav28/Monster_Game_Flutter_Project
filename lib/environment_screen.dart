@@ -1,6 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
+import 'package:flutter_games/carosal_slider.dart';
 import 'package:flutter_games/environment.dart';
 import 'package:flutter_games/environment_tile.dart';
+import 'package:flutter_games/starting_button.dart';
 
 class EnvironmentChooseScreen extends StatelessWidget {
   static const environments = [
@@ -37,6 +41,7 @@ class EnvironmentChooseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 20),
         Row(
@@ -70,7 +75,15 @@ class EnvironmentChooseScreen extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(height: 100),
+        // SizedBox(
+        //   height: 400,
+        //   child: CarosalSlider(
+        //     environments: environments,
+        //     onclicked: onClicked,
+        //   ),
+        // ),
+
+        // StartingButton(),
       ],
     );
   }

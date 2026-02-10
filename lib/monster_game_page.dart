@@ -68,6 +68,11 @@ class _MonsterGameState extends State<MonsterGamePage>
     return min + Random().nextInt(max - min + 1);
   }
 
+  void onRestartOption() {
+    playAgain();
+    widget.onRestart();
+  }
+
   void heal() {
     setState(() {
       isHealing = true;
@@ -286,10 +291,14 @@ class _MonsterGameState extends State<MonsterGamePage>
               ),
             ),
           ),
-        GameOption(
-          onExit: widget.onExit,
-          onRestart: widget.onResume,
-          onResume: widget.onResume,
+        Positioned(
+          top: 8,
+          left: 5,
+          child: GameOption(
+            onExit: widget.onExit,
+            onRestart: onRestartOption,
+            onResume: widget.onResume,
+          ),
         ),
       ],
     );

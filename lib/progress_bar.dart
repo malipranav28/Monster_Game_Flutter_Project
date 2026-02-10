@@ -76,7 +76,7 @@ class _ProgressBarState extends State<ProgressBar>
               ),
               Center(
                 child: Text(
-                  "${widget.value * 100}%",
+                  "${(widget.value * 100).toInt()}%",
                   style: TextStyle(
                     fontSize: 12,
                     color: const Color.fromARGB(255, 14, 12, 12),

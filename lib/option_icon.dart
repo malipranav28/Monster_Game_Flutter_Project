@@ -14,14 +14,14 @@ class GameOption extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return IconButton(
-      icon: Icon(Icons.menu),
+      icon: Icon(Icons.menu, color: Colors.white, size: 40),
       onPressed: () {
         showDialog(
           context: context,
           builder: (_) => Center(
             child: Container(
-              height: 270,
-              width: 250,
+              height: 280,
+              width: 260,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(250, 14, 9, 9),
                 border: BoxBorder.all(
@@ -44,23 +44,17 @@ class GameOption extends StatelessWidget {
                       spacing: 20,
                       children: [
                         OptionButton(
-                          onClicked: () {
-                            onRestart;
-                          },
+                          onClicked: onRestart,
                           name: "Restart",
                           icon: Icons.restart_alt,
                         ),
                         OptionButton(
-                          onClicked: () {
-                            onResume;
-                          },
+                          onClicked: onResume,
                           name: "Resume",
                           icon: Icons.fast_rewind,
                         ),
                         OptionButton(
-                          onClicked: () {
-                            onExit;
-                          },
+                          onClicked: onExit,
                           name: "Exit",
                           icon: Icons.exit_to_app,
                         ),
@@ -92,9 +86,9 @@ class OptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ElevatedButton(
-      onPressed: () => onClicked,
+      onPressed: () => {Navigator.of(context).pop(), onClicked()},
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(150, 50),
+        fixedSize: const Size(160, 50),
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
@@ -126,13 +120,14 @@ class OptionButton extends StatelessWidget {
                 children: [
                   Icon(icon),
                   SizedBox(width: 20),
-
-                  Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 240, 237, 237),
+                  Expanded(
+                    child: Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 240, 237, 237),
+                      ),
                     ),
                   ),
                 ],

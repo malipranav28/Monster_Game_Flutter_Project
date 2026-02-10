@@ -24,8 +24,41 @@ class _MyApp extends State<MyApp> {
   String playerName = "";
   late String backGround;
   bool isEnvironment = false;
+  late double progressLoader;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startLoader();
+  }
+
+  void startLoader() async {
+    if (!isGame && !isEnvironment) {
+      progressLoader = 0.5;
+      await Future.delayed(
+        const Duration(seconds: 2),
+        () => setState(() {
+          progressLoader = 0.8;
+        }),
+      );
+      await Future.delayed(
+        const Duration(seconds: 1),
+        () => setState(() {
+          progressLoader = 1;
+        }),
+      );
+      await Future.delayed(
+        const Duration(seconds: 1),
+        () => setState(() {
+          isGame = true;
+        }),
+      );
+    }
+  }
 
   void onRestart() {
+    print("Restart");
     setState(() {
       isEnvironment = true;
       isGame = true;
@@ -34,9 +67,10 @@ class _MyApp extends State<MyApp> {
 
   void onResume() {}
   void onExit() {
+    print("Exit run");
     setState(() {
       isEnvironment = false;
-      isGame = false;
+      isGame = true;
     });
   }
 
@@ -75,7 +109,7 @@ class _MyApp extends State<MyApp> {
         //     ? Home(onClicked: onClicked)
         //     : MonsterGamePage(playerNmae: playerName),
         body: !isGame
-            ? Home(onClicked: onClicked)
+            ? Home(onClicked: onClicked, value: progressLoader)
             : !isEnvironment
             ? EnvironmentChooseScreen(onClicked: onClickedEnvironmentTile)
             : MonsterGamePage(

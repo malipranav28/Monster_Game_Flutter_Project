@@ -20,6 +20,7 @@ class EnvironmentTile extends StatelessWidget {
       child: Container(
         height: 210,
         width: 140,
+        margin: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadiusGeometry.all(Radius.circular(10)),
           boxShadow: [
