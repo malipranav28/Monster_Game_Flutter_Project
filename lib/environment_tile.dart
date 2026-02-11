@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_games/monster_game_page.dart';
 
 class EnvironmentTile extends StatelessWidget {
   final String name;
   final String filePath;
-  final void Function(String) onClicked;
+  // final void Function(String) onClicked;
 
   const EnvironmentTile(
     this.name,
     this.filePath, {
     super.key,
-    required this.onClicked,
+    // required this.onClicked,
   });
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
-      onTap: () => {onClicked(filePath)},
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MonsterGamePage(backGroundImg: filePath),
+        ),
+      ),
       child: Container(
         height: 210,
         width: 140,

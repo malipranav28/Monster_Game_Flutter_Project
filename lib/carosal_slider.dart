@@ -37,11 +37,7 @@ class _CarosalSliderState extends State<CarosalSlider> {
           controller: _controller,
           children: [
             for (var env in widget.environments)
-              EnvironmentTile(
-                env.name,
-                env.filePath,
-                onClicked: widget.onclicked,
-              ),
+              EnvironmentTile(env.name, env.filePath),
           ],
         ),
         Positioned(

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GameOption extends StatelessWidget {
-  final void Function() onResume;
-  final void Function() onRestart;
-  final void Function() onExit;
-  const GameOption({
-    super.key,
-    required this.onResume,
-    required this.onRestart,
-    required this.onExit,
-  });
+  final void Function(BuildContext context) onRestart;
+  const GameOption({super.key, required this.onRestart});
+
+  void onExit(BuildContext context) {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -48,11 +46,7 @@ class GameOption extends StatelessWidget {
                           name: "Restart",
                           icon: Icons.restart_alt,
                         ),
-                        OptionButton(
-                          onClicked: onResume,
-                          name: "Resume",
-                          icon: Icons.fast_rewind,
-                        ),
+                        OptionButton(name: "Resume", icon: Icons.fast_rewind),
                         OptionButton(
                           onClicked: onExit,
                           name: "Exit",
@@ -73,20 +67,23 @@ class GameOption extends StatelessWidget {
 
 class OptionButton extends StatelessWidget {
   final String name;
-  final void Function() onClicked;
+  void Function(BuildContext)? onClicked;
   final IconData icon;
 
-  const OptionButton({
+  OptionButton({
     super.key,
     required this.name,
-    required this.onClicked,
+    this.onClicked,
     required this.icon,
   });
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return ElevatedButton(
-      onPressed: () => {Navigator.of(context).pop(), onClicked()},
+      onPressed: () {
+        Navigator.of(context).pop();
+        onClicked?.call(context);
+      },
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(160, 50),
         padding: EdgeInsets.zero,

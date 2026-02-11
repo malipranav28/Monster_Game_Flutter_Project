@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_games/carosal_slider.dart';
 import 'package:flutter_games/environment.dart';
 import 'package:flutter_games/environment_tile.dart';
+import 'package:flutter_games/monster_game_page.dart';
 import 'package:flutter_games/starting_button.dart';
 
 class EnvironmentChooseScreen extends StatelessWidget {
@@ -34,9 +35,19 @@ class EnvironmentChooseScreen extends StatelessWidget {
     ),
   ];
 
-  final void Function(String) onClicked;
+  // final void Function(String) onClicked;
 
-  const EnvironmentChooseScreen({super.key, required this.onClicked});
+  // void onClicked(String name) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) =>
+  //           const MonsterGamePage(backGroundImg: backGroundImg),
+  //     ),
+  //   );
+  // }
+
+  const EnvironmentChooseScreen({super.key});
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -65,7 +76,6 @@ class EnvironmentChooseScreen extends StatelessWidget {
             itemCount: environments.length - 1,
             itemBuilder: (BuildContext context, int index) {
               return EnvironmentTile(
-                onClicked: onClicked,
                 environments[index].name,
                 environments[index].filePath,
               );
@@ -75,15 +85,6 @@ class EnvironmentChooseScreen extends StatelessWidget {
             },
           ),
         ),
-        // SizedBox(
-        //   height: 400,
-        //   child: CarosalSlider(
-        //     environments: environments,
-        //     onclicked: onClicked,
-        //   ),
-        // ),
-
-        // StartingButton(),
       ],
     );
   }

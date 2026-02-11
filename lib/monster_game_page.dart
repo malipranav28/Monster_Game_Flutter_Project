@@ -10,20 +10,9 @@ import 'package:flutter_games/monster_game_tile.dart';
 import 'package:flutter_games/option_icon.dart';
 
 class MonsterGamePage extends StatefulWidget {
-  final String playerNmae;
   final String backGroundImg;
-  final void Function() onRestart;
-  final void Function() onResume;
-  final void Function() onExit;
 
-  const MonsterGamePage({
-    super.key,
-    required this.playerNmae,
-    required this.backGroundImg,
-    required this.onRestart,
-    required this.onResume,
-    required this.onExit,
-  });
+  const MonsterGamePage({super.key, required this.backGroundImg});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -50,7 +39,6 @@ class _MonsterGameState extends State<MonsterGamePage>
   void initState() {
     // TODO: implement initState
     super.initState();
-    playerName = widget.playerNmae;
 
     Future.delayed(Duration(seconds: 2), () {
       setState(() {
@@ -68,9 +56,8 @@ class _MonsterGameState extends State<MonsterGamePage>
     return min + Random().nextInt(max - min + 1);
   }
 
-  void onRestartOption() {
+  void onRestartOption(BuildContext context) {
     playAgain();
-    widget.onRestart();
   }
 
   void heal() {
@@ -294,11 +281,7 @@ class _MonsterGameState extends State<MonsterGamePage>
         Positioned(
           top: 8,
           left: 5,
-          child: GameOption(
-            onExit: widget.onExit,
-            onRestart: onRestartOption,
-            onResume: widget.onResume,
-          ),
+          child: GameOption(onRestart: onRestartOption),
         ),
       ],
     );
